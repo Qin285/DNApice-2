@@ -1,14 +1,15 @@
 from EspecieSeiLa import *
 from random import *
 
-limiteMaximoGene = 1000
-tamanhoPopulacao = 10
+limiteMaximoGene = 17500
+tamanhoPopulacao = int(input("Insira o tamanho da população inicial: "))
+tamanhoNovaPopulação = int(input("Insira o tamanho da nova população: "))
 tamanhoCaracteristica1 = 5
 valorTaxaMutacao = 5
-valorTaxaSelecao = 80
+valorTaxaSelecao = 5
 
 def geracaoIndividuo():
-    individuo = Especie("Sein Lásus", choice(["M","F"]))
+    individuo = Especie("Pinguim-Real - Geração 1")
     caracteristica = []
     for i in range(0, tamanhoCaracteristica1):
         caracteristica += [randint(1, limiteMaximoGene)]
@@ -16,7 +17,7 @@ def geracaoIndividuo():
     return individuo
 
 def reproducaoIndividuos(par1, par2):
-    individuo = Especie("Su Lú", choice(["M","F"]))
+    individuo = Especie("Pinguim-Real - Geração 2", choice(["M","F"]))
     caracteristica = []
     for (i, j) in zip(par1.caracteristica1, par2.caracteristica1):
         caracteristica += [max(i, j)]
@@ -45,7 +46,9 @@ for i in range(0, len(populacao) - 1):
     ind3 = reproducaoIndividuos(par1, par2)
     ind3 = mutacaoGenetica(ind3)
     if sum(ind3.caracteristica1) >= avaliacaoPopulacao(populacao):
-        popnewage += [ind3]
+        popnewage.append(ind3)
+    if len(popnewage) >= tamanhoNovaPopulação:
+        break
 
 for individuo in populacao:
     print(f"{individuo.nome} - {individuo.sexo}")
