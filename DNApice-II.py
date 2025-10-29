@@ -1,10 +1,18 @@
 from random import *
+import time,sys
 
 limiteMaximoGene = 1000
 tamanhoPopulacao = 10
 tamanhoIndividuo = 5
 valorTaxaMutacao = 5
 valorTaxaSelecao = 80
+
+def esc_maquina(texto, atraso=0.01):
+    for letra in texto:
+        sys.stdout.write(letra)  
+        sys.stdout.flush()       
+        time.sleep(atraso)       
+    print() 
 
 def geracaoIndividuo():
     individuo = []
@@ -43,7 +51,7 @@ for i in range(0, len(populacao) - 1):
         popnewage += [ind3]
 
 for individuo in populacao:
-    print(individuo)
+    esc_maquina(individuo)
 print()
 for individuo in popnewage:
-    print(individuo)
+    esc_maquina(individuo)
